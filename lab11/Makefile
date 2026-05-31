@@ -21,7 +21,7 @@ main.bin: src/main.c
 	$(CC) $(C_OPTS) $< -o ./dist/$@
 
 test.bin: test/test.c
-	$(CC) $(C_OPTS) $< -fprofile-instr-generate -fcoverage-mapping -o ./dist/$@ -pthread -lcheck_pic -lrt -lm -lsubunit
+	$(CC) $(C_OPTS) $< -fprofile-instr-generate -fcoverage-mapping -o ./dist/$@ -pthread -lcheck -lrt -lm -lsubunit
 
 run: clean prep compile
 	./dist/main.bin
@@ -35,13 +35,13 @@ coverage: clean prep compile
 	llvm-cov-14 report dist/test.bin -instr-profile=dist/test.profdata src/*.c
 	llvm-cov-14 show dist/test.bin -instr-profile=dist/test.profdata src/*.c --format html > dist/coverage.html
 
-leak-check: clean prep compile test.bin 
+leak-check: clean prep compile
 	valgrind $(V_FLAGS) --log-file=dist/valgrind.log --xml-file=dist/valgrind.xml --xml=yes dist/main.bin
 	valgrind $(V_FLAGS) --log-file=dist/valgrind_test.log --xml-file=dist/valgrind_test.xml --xml=yes dist/test.bin
 
 check:
 	clang-format --verbose -dry-run --Werror src/*
-	clang-tidy src/*.c  -checks=-readability-uppercase-literal-suffix,-readability-magic-numbers,-clang-analyzer-deadcode.DeadStores,-clang-analyzer-security.insecureAPI.rand
+	clang-tidy src/*.c -checks=-readability-uppercase-literal-suffix,-readability-magic-numbers,-clang-analyzer-deadcode.DeadStores,-clang-analyzer-security.insecureAPI.rand
 	rm -rf src/*.dump
 
 doxygen:

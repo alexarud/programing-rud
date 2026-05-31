@@ -1,0 +1,8 @@
+office;yes;Junior Java Developer;EPAM;2;1000;2000;intermediate;Харків, Сумська, 1;yes
+office;yes;Middle Java Developer;SoftServe;4;2000;4000;upper-intermediate;Харків, Пушкінська, 5;no
+office;no;Senior Android Developer;GlobalLogic;6;4000;7000;advanced;Київ, Хрещатик, 10;yes
+office;no;Sales Manager;EPAM;1;800;1500;pre-intermediate;Харків, Сумська, 1;no
+remote;yes;Middle Java Developer;Luxoft;3;2500;5000;intermediate;GMT+2;yes
+remote;yes;Senior Android Developer;EPAM;5;5000;10000;upper-intermediate;EST;yes
+remote;no;Project Manager;SoftServe;2;3000;6000;advanced;PT;no
+remote;yes;Junior Java Developer;Ciklum;1;1200;2200;pre-intermediate;GMT+2;no
